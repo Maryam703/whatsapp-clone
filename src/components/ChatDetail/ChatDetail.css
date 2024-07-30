@@ -1,0 +1,96 @@
+.chat-detail-container{
+    height: 100vh;
+    width: 100%;
+    background-image: url(https://i.redd.it/qwd83nc4xxf41.jpg);
+}
+.header-box{
+    height: 60px;
+    width: 100%;
+    background-color: rgb(216, 215, 215) ;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 16px;
+}
+.header-dp{
+    height: 100%;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-dp-box{
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    border: 1px solid rgb(218, 214, 214);
+}
+.header-dp-img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.header-detail{
+    height: 100%;
+    width: 82%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+.header-name{
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+.header-icon{
+    width: 8%;
+    height: 100%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.middle-comp{
+    height: 92%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+.footer{
+    height: 60px;
+    width: 70.7%;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(216, 215, 215) ;
+    position: absolute;
+    bottom: 0;
+}
+.text-input{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 28px;
+}
+.text-input>input{
+    width: 100%;
+    height: 60%;
+    border: 1px solid rgb(206, 205, 205);
+    border-radius: 6px;
+    outline: none;
+    padding-left: 8px;
+}
+.file-input{
+    width: 10%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.file-input>input{
+    display: none;
+}
+.footer-icon{
+    font-size: 22px;
+}

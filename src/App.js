@@ -1,24 +1,18 @@
-import logo from './logo.svg';
+import { useOutlet } from 'react-router-dom';
 import './App.css';
+import Home from './components/Home/Home';
+import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
+  const outlet = useOutlet()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <>
+   <div className='main-container'>
+    <Sidebar className="side-bar"/>
+   <Home className="side-section"/>
+   <div className="outlet-section">{outlet}</div>
+   </div>
+   </>
   );
 }
 
