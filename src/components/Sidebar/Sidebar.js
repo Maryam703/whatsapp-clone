@@ -8,6 +8,10 @@ export default function Sidebar() {
   const handleUser = () => {
     navigate("/Userdashboard")
   }
+
+  const handleChat = () => {
+    navigate("/")
+  }
   
   return (
     <div className='sidebar-container'>
@@ -15,7 +19,7 @@ export default function Sidebar() {
         <div className='cont-file'><img src='' /></div>
       </div>
 
-      <div className='sidebar-box2'>
+      <div className='sidebar-box2' onClick={handleChat}>
         <i class="fa-regular fa-message"></i>
       </div>
 

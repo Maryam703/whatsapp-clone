@@ -1,9 +1,14 @@
 import React from 'react'
 import "./Userdashboard.css"
+import Sidebar from "../Sidebar/Sidebar"
 
 export default function Userdashboard() {
   return (
     <div className='user-dashboard-container'>
+      <div className='dashboard-sidebar'>
+      <Sidebar />
+      </div>
+      
     <div className='user-dashboard-form'>
       <p>Profile</p>
       <div className='user-profile-section'>
