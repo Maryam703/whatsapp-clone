@@ -8,7 +8,7 @@
     background-color: rgb(16, 28, 29);
 }
 .sidebar-box1{
-    height: 50px;
+    height: 70px;
     width: 100%;
     margin-bottom: 28px;
     display: flex;
@@ -19,7 +19,6 @@
     min-height: 50px;
     width: 50px;
     border-radius: 50%;
-    border: 1px solid white;
 }
 .cont-file>img{
     height: 100%;

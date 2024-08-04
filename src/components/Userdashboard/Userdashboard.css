@@ -22,16 +22,37 @@
     border-radius: 6px;
     margin-left: 30%;
 }
-.user-dashboard-form>p{
-    margin-top: 22px;
-    font-size: 24px;
+.dashboard-head{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 18px;
+}
+.dashboard-head>p{
+    font-size: 28px;
     font-weight: 600;
     font-family:'Times New Roman', Times, serif;
+}
+.dashboard-head>button{
+    height: 28px;
+    width: 70px;
+    font-size: 22px;
+    font-weight: 600;
+    background-color: rgb(226, 226, 226);
+    border: none;
+    font-family:'Times New Roman', Times, serif;
+}
+.dashboard-head>button:hover{
+    font-size: 24px;
 }
 .user-profile-section{
     height: 300px;
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -43,9 +64,19 @@
 }
 .user-profile>img{
     height: 100%;
-    width: 100;
+    width: 100%;
     object-fit: cover;
     border-radius: 50%;
+}
+.edit-dp{
+    color: rgb(2, 119, 2);
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 8px;
+    cursor: pointer;
+}
+#file-edit-input{
+    display: none;
 }
 .user-name-section{
     height: 70px;
@@ -61,6 +92,32 @@ label{
 }
 .user-info{
     margin-top: 20px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+}
+.user-info-name{
+    width: 86%;
+}
+.user-info-edit{
+    width: 14%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.user-info-about{
+    width: 86%;
+}
+.user-name-input{
+    background-color: rgb(226, 226, 226);
+    outline: none;
+    border: none;
+    font-size: 18px;
+}
+.user-about-input{
+    background-color: rgb(226, 226, 226);
+    outline: none;
+    border: none;
     font-size: 18px;
 }
 .user-about-section{

@@ -8,10 +8,12 @@ import WebLogo from './components/WebLogoPage/WebLogo';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Userdashboard from './components/Userdashboard/Userdashboard';
+import Loader from './components/Loader/Loader';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
+    <Route path='/Loader' element={<Loader/>}/>
     <Route path='/Userdashboard' element={<Userdashboard/>}/>
     <Route path='/Register' element={<Register/>}/>
     <Route path='/Login' element={<Login/>}/>
