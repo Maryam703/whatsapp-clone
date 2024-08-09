@@ -58,12 +58,11 @@
 }
 .footer{
     height: 60px;
-    width: 70.7%;
+    width: 100%;
+    background-color: rgb(216, 215, 215) ;
     display: flex;
     flex-direction: row;
-    background-color: rgb(216, 215, 215) ;
-    position: absolute;
-    bottom: 0;
+    margin-bottom: 16px;
 }
 .text-input{
     width: 90%;
