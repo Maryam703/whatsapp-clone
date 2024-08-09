@@ -7,6 +7,7 @@ import { db } from '../../Config/FirebaseConfig'
 import { get, ref, set } from 'firebase/database'
 import { storage } from '../../Config/FirebaseConfig'
 import { ref as storageRef, uploadBytes, getDownloadURL } from "firebase/storage"
+import Loader from '../Loader/Loader'
 
 export default function ChatDetail({ }) {
     const [contact, setContact] = useState(null)
@@ -35,16 +36,16 @@ export default function ChatDetail({ }) {
 
     useEffect(() => {
         const getUser = async () => {
-            if (contact && contact.member1 !== user.id) {
-                const docRef = ref(db, `users/${contact.member1}`);
+            if (contact && contact.members.member1 !== user.id) {
+                const docRef = ref(db, `users/${contact.members.member1}`);
                 const snapShot = await get(docRef);
                 if (snapShot.exists()) {
                     const user = snapShot.val()
                     setNewUser(user)
                 }
             }
-            if (contact && contact.member2 !== user.id) {
-                const docRef = ref(db, `users/${contact.member2}`);
+            if (contact && contact.members.member2 !== user.id) {
+                const docRef = ref(db, `users/${contact.members.member2}`);
                 const snapShot = await get(docRef);
                 if (snapShot.exists()) {
                     const user = snapShot.val()
@@ -72,45 +73,6 @@ export default function ChatDetail({ }) {
         input.click();
     }
 
-
-    let d = new Date();
-    let hour = d.getHours();
-    let minutes = d.getMinutes();
-
-    if (hour < 10) {
-        hour = '0' + hour;
-    };
-    if (minutes < 10) {
-        minutes = '0' + minutes;
-    }
-    let time = hour + ' : ' + minutes;
-
-    const Message = {
-        message: message,
-        time: time,
-        senderId: user.id,
-        file: "",
-        fileType: "text",
-    }
-    const sendMessage = async () => {
-        setLoading(true)
-        try {
-            await set(ref(db, `chatMessage/${id}/` + Date.now()), Message);
-            if (user.id !== contact.member1) {
-                await set(ref(db, "userChats/" + contact.member1 + "/" + id), true)
-                console.log("hii")
-            }
-
-            if (user.id !== contact.member2) {
-                await set(ref(db, "userChats/" + contact.member2 + "/" + id), true)
-            }
-        } catch (error) {
-            console.error(error)
-        }
-        setLoading(false)
-        setMessage("")  
-    }
-
     const setFileUpload = async (file) => {
         setLoading(true)
         try {
@@ -121,24 +83,60 @@ export default function ChatDetail({ }) {
                 await uploadBytes(fileRef, file)
                 const url = await getDownloadURL(fileRef);
                 setFile({ url, type: fileType })
-                setLoading(false)
+                await set(ref(db, "chats/" + id + "/" + "lastMessage"), { fileType: fileType, time: time })
+
+
             }
             if (file.type.startsWith("image/")) {
                 const fileType = "image";
                 await uploadBytes(fileRef, file)
                 const url = await getDownloadURL(fileRef);
                 setFile({ url, type: fileType })
-                setLoading(false)
+                await set(ref(db, "chats/" + id + "/" + "lastMessage"), { fileType: fileType, time: time })
+
             }
 
         } catch (error) {
             console.error(error)
         }
+        setLoading(false)
     }
+
+
+    let date = new Date();
+    let time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+
+
+    const Message = {
+        message: message,
+        time: time,
+        senderId: user.id,
+        file: "",
+        fileType: "text",
+    }
+
+    const sendMessage = async () => {
+        try {
+            await set(ref(db, `chatMessage/${id}/` + Date.now()), Message);
+            if (user.id !== contact.members.member1) {
+                await set(ref(db, "userChats/" + contact.members.member1 + "/" + id), true)
+            }
+
+            if (user.id !== contact.members.member2) {
+                await set(ref(db, "userChats/" + contact.members.member2 + "/" + id), true)
+            }
+
+            await set(ref(db, "chats/" + id + "/" + "lastMessage"), { message: Message.message, time: Message.time })
+        } catch (error) {
+            console.error(error)
+        }
+        setMessage("")
+    }
+
 
     return (
         <>
-        {loading && <loading/>}
+            {loading && <Loader />}
             <div className='chat-detail-container'>
                 <div className='header-box'>
                     <div className='header-dp'>

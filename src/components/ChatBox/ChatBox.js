@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import "./ChatBox.css"
-import { get, onChildAdded, ref } from 'firebase/database'
+import { onChildAdded, ref } from 'firebase/database'
 import { db } from '../../Config/FirebaseConfig'
 
 export default function ChatBox({ id }) {
     const [messages, setMessages] = useState([])
     let user = JSON.parse(localStorage.getItem("user"))
-    console.log(id)
 
     useEffect(() => {
         setMessages([])

@@ -11,9 +11,9 @@ export default function Userdashboard() {
   const [editName, setEditName] = useState(false);
   const [editAbout, setEditAbout] = useState(false);
   const [changeProfile, setChangeProfile] = useState(false);
-  const [file, setFile] = useState(user.file);
-  const [name, setName] = useState(user.name);
-  const [about, setAbout] = useState(user.about);
+  const [file, setFile] = useState(user && user.file);
+  const [name, setName] = useState(user && user.name);
+  const [about, setAbout] = useState(user && user.about);
   const [loading, setLoading] = useState(false)
 
   const editYourName = () => {
