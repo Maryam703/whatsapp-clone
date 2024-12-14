@@ -13,7 +13,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
-  const Handelsubmit = async (e) => {
+  const handleSubmit = async (e) => {
     setLoading(true)
     e.preventDefault();
     try {
@@ -21,14 +21,17 @@ export default function Login() {
 
       const snapShot = await get(ref(db, "users/" + users.user.uid));
       const user = { ...snapShot.val(), uid: snapShot.id }
-
-      localStorage.setItem("user", JSON.stringify(user));
+     
+      let userLoggedIn = localStorage.setItem("user", JSON.stringify(user));
+      if (userLoggedIn) {
+        navigate("/")
+      } else {
+        navigate("/Register")
+      }
     } catch (error) {
       console.error(error)
-      navigate("/Register")
     }
     setLoading(false)
-    navigate("/")
   }
 
   return (
@@ -36,7 +39,7 @@ export default function Login() {
       {loading && <Loader />}
       <div className="Login-container">
         <div className="login-logo"><img className="login-logo-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPADVMClbsK0sjUlU7iTXpQ7krJwQfTW_ezg&s" /></div>
-        <form onSubmit={Handelsubmit}>
+        <form onSubmit={handleSubmit}>
           <input
             type="email"
             required

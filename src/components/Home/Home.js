@@ -56,7 +56,7 @@ export default function Home() {
   }
 
   const members = {
-    member1: searchContact && searchContact.id,
+    member1: searchContact && searchContact?.id,
     member2: user && user.id,
   }
   const startNewChat = async () => {
