@@ -7,19 +7,17 @@ import ChatDetail from './components/ChatDetail/ChatDetail';
 import WebLogo from './components/WebLogoPage/WebLogo';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
-import Userdashboard from './components/Userdashboard/Userdashboard';
-import Loader from './components/Loader/Loader';
+import Userdashboard from "./components/Userdashboard/Userdashboard"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-    <Route path='/Loader' element={<Loader/>}/>
-    <Route path='/Userdashboard' element={<Userdashboard/>}/>
-    <Route path='/Register' element={<Register/>}/>
+   <Route path='/register' element={<Register/>}/>
     <Route path='/Login' element={<Login/>}/>
     <Route path='/' element={<App/> }>
     <Route path='' element={<WebLogo/>}/> 
     <Route path='ChatDetail/:id' element={<ChatDetail/>}/>
+    <Route path='/Userdashboard' element={<Userdashboard />} />
     </Route>
     </>
   )

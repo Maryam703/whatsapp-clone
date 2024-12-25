@@ -21,12 +21,14 @@ export default function Login() {
 
       const snapShot = await get(ref(db, "users/" + users.user.uid));
       const user = { ...snapShot.val(), uid: snapShot.id }
+
+      localStorage.setItem("user", JSON.stringify(user));
      
-      let userLoggedIn = localStorage.setItem("user", JSON.stringify(user));
+      let userLoggedIn = JSON.parse(localStorage.getItem("user"));
       if (userLoggedIn) {
         navigate("/")
       } else {
-        navigate("/Register")
+        navigate("/Login")
       }
     } catch (error) {
       console.error(error)
@@ -57,7 +59,7 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button className="whatsapp-button">Login</button>
-          <div>Don't have an account?<Link className="reg-link" to={"/Register"}>Register here!</Link></div>
+          <div>Don't have an account?<Link className="reg-link" to={"/register"}>Register here!</Link></div>
         </form>
       </div>
     </>

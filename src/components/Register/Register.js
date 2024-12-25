@@ -19,7 +19,7 @@ export default function Register() {
       e.preventDefault()
       try {
         const users = await createUserWithEmailAndPassword(auth, email, password)
-        
+      
         const user = {
           name : name,
           email : email,
@@ -29,11 +29,17 @@ export default function Register() {
         }
 
         await set(ref(db, "users/"+ users.user.uid), user)
+        localStorage.setItem("user" , JSON.stringify(user))
+        let createdUser = JSON.parse(localStorage.getItem("user"))
+        if (createdUser) {
+          navigate("/")
+        } else {
+          navigate("/register")
+        }
       } catch (error) {
         console.error(error)
       }
       setLoading(false)
-      navigate("/Login")
     }
 
   return (
